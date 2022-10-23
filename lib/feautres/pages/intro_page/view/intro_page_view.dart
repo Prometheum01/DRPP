@@ -25,8 +25,9 @@ class _IntroPageViewState extends IntroPageViewModel {
             liquidController: liquidController,
             enableSideReveal: true,
             enableLoop: false,
-            slideIconWidget: const Icon(
+            slideIconWidget: Icon(
               Icons.arrow_back_ios_new_rounded,
+              color: currentIndex.isOdd ? Colors.white : Colors.black,
             ),
             onPageChangeCallback: (activePageIndex) {
               setState(() {
@@ -56,6 +57,20 @@ class _IntroPageViewState extends IntroPageViewModel {
               StringConsts.logoPath,
               height: context.dynamicHeight(0.5),
               width: context.dynamicHeight(0.5),
+            ),
+          ),
+          Positioned(
+            top: context.dynamicHeight(0.025),
+            right: context.dynamicWidth(0.05),
+            child: TextButton(
+              onPressed: () {
+                skipPage();
+              },
+              child: Text(
+                'Skip',
+                style: context.textTheme.headline6?.copyWith(
+                    color: currentIndex.isOdd ? Colors.black : Colors.white),
+              ),
             ),
           ),
           Positioned(
