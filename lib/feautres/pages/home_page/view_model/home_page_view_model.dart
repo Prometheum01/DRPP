@@ -16,6 +16,7 @@ abstract class HomePageViewModel extends State<HomePageView> with LoadingMixin {
   @override
   void initState() {
     super.initState();
+
     changeLoading();
     tosdrService = TosdrService();
     controller = PageController();

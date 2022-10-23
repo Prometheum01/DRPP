@@ -3,6 +3,7 @@ import 'package:dont_read_privacy_policy/feautres/pages/search_result_page/view/
 import 'package:dont_read_privacy_policy/product/constants/string_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:kartal/kartal.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../product/widgets/service_main_detail_widget.dart';
@@ -21,20 +22,31 @@ class _ServicesPageViewState extends ServicesPageViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _searchAppBar(),
-      body: AnimationLimiter(
-        child: ListView.builder(
-          itemCount: context.watch<ServiceProvider>().getPopularServices.length,
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) {
-            return StaggeredItem(
-              index: index,
-              child: ServiceMainDetailWidget(
-                  pointsOfServiceModel: context
-                      .watch<ServiceProvider>()
-                      .getPopularServices[index]),
-            );
-          },
-        ),
+      body: Column(
+        children: [
+          Text(
+            'Popular Services',
+            style: context.textTheme.headline4,
+          ),
+          Expanded(
+            child: AnimationLimiter(
+              child: ListView.builder(
+                itemCount:
+                    context.watch<ServiceProvider>().getPopularServices.length,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return StaggeredItem(
+                    index: index,
+                    child: ServiceMainDetailWidget(
+                        pointsOfServiceModel: context
+                            .watch<ServiceProvider>()
+                            .getPopularServices[index]),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

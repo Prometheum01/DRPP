@@ -20,7 +20,6 @@ class _LoadingPageViewState extends LoadingPageViewModel {
         child: Lottie.asset(
           StringConsts.loadingLottiePath,
           height: context.dynamicHeight(0.5),
-          width: context.dynamicWidth(0.5),
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:dont_read_privacy_policy/core/provider/service_provider.dart';
-import 'package:dont_read_privacy_policy/feautres/pages/home_page/view/home_page_view.dart';
+import 'package:dont_read_privacy_policy/feautres/pages/intro_page/view/intro_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +30,9 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const HomePageView(),
+      home: const IntroPageView(),
     );
   }
 }
+
+//Splash Screen

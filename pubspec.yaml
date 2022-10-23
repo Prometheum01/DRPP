@@ -24,22 +24,18 @@ dependencies:
   provider: ^6.0.4
 
   #Cache
-  hive: ^2.2.3
+  shared_preferences: ^2.0.15
 
   #Animation
   lottie: ^1.4.3
   flutter_staggered_animations: ^1.1.1
   liquid_swipe: ^3.0.0
+  smooth_page_indicator: ^1.0.0+2
 
   #Splash Screen
 
-  #Fonts
-  google_fonts: ^3.0.1
-
   #Core
   kartal: ^2.5.1
-  flutter_svg: ^1.1.5
-
 
 
 dev_dependencies:
