@@ -1,0 +1,70 @@
+name: dont_read_privacy_policy
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.1 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+  #Network
+  dio: ^4.0.6
+  internet_connection_checker: ^1.0.0+1
+  url_launcher: ^6.1.6
+
+  #State Management
+  provider: ^6.0.4
+
+  #Cache
+  hive: ^2.2.3
+
+  #Animation
+  lottie: ^1.4.3
+  flutter_staggered_animations: ^1.1.1
+  liquid_swipe: ^3.0.0
+
+  #Splash Screen
+
+  #Fonts
+  google_fonts: ^3.0.1
+
+  #Core
+  kartal: ^2.5.1
+  flutter_svg: ^1.1.5
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/animations/
+
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
