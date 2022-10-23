@@ -1,5 +1,6 @@
 import 'package:dont_read_privacy_policy/product/constants/string_const.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:lottie/lottie.dart';
 
 import '../view_model/loading_page_view_model.dart';
@@ -16,14 +17,10 @@ class _LoadingPageViewState extends LoadingPageViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset(
-              StringConsts.loadingLottiePath,
-            ),
-            const Text('We are trying to find...')
-          ],
+        child: Lottie.asset(
+          StringConsts.loadingLottiePath,
+          height: context.dynamicHeight(0.5),
+          width: context.dynamicWidth(0.5),
         ),
       ),
     );

@@ -1,9 +1,11 @@
 import 'package:dont_read_privacy_policy/feautres/pages/loading_page/view/loading_page_view.dart';
 import 'package:dont_read_privacy_policy/feautres/pages/search_result_page/view_model/search_result_page_view_model.dart';
-import 'package:dont_read_privacy_policy/product/constants/string_const.dart';
 import 'package:dont_read_privacy_policy/product/widgets/service_main_detail_widget.dart';
+import 'package:dont_read_privacy_policy/product/widgets/staggered_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
+import '../../../../product/widgets/not_found_lottie.dart';
 
 class SearchResultPageView extends StatefulWidget {
   const SearchResultPageView({super.key, required this.searchKeys});
@@ -21,18 +23,23 @@ class _SearchResultPageViewState extends SearchResultPageViewModel {
       appBar: _searchAppBar(),
       body: isLoading
           ? const LoadingPageView()
-          : listOfServiceModels.isEmpty
-              ? Center(
-                  child: Lottie.asset(StringConsts.notFoundPagePath),
-                )
-              : ListView.builder(
-                  itemCount: listOfServiceModels.length,
-                  itemBuilder: (context, index) {
-                    return ServiceMainDetailWidget(
-                      pointsOfServiceModel: listOfServiceModels[index],
-                    );
-                  },
-                ),
+          : SizedBox(
+              child: listOfServiceModels.isEmpty
+                  ? const NotFoundLottie()
+                  : AnimationLimiter(
+                      child: ListView.builder(
+                        itemCount: listOfServiceModels.length,
+                        itemBuilder: (context, index) {
+                          return StaggeredItem(
+                            index: index,
+                            child: ServiceMainDetailWidget(
+                              pointsOfServiceModel: listOfServiceModels[index],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+            ),
     );
   }
 

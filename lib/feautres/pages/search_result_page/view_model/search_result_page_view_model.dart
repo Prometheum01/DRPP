@@ -14,11 +14,12 @@ abstract class SearchResultPageViewModel extends State<SearchResultPageView>
   late final TextEditingController searchTextController =
       TextEditingController();
 
-  List<PointsOfServiceModel> listOfServiceModels = [];
+  late List<PointsOfServiceModel> listOfServiceModels = [];
 
   @override
   void initState() {
     super.initState();
+    changeLoading();
 
     tosdrService = TosdrService();
 
@@ -26,9 +27,8 @@ abstract class SearchResultPageViewModel extends State<SearchResultPageView>
   }
 
   fetchSearchKeys(String keys) async {
-    changeLoading();
+    setLoading(true);
     listOfServiceModels = await tosdrService.fetchSearchedServices(keys);
-
     changeLoading();
   }
 }

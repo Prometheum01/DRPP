@@ -1,10 +1,12 @@
 import 'package:dont_read_privacy_policy/core/constants/padding_const.dart';
-import 'package:dont_read_privacy_policy/core/constants/radius_const.dart';
 import 'package:dont_read_privacy_policy/feautres/pages/service_detail_page/view_model/service_detail_page_view_model.dart';
 import 'package:dont_read_privacy_policy/product/constants/string_const.dart';
 import 'package:dont_read_privacy_policy/product/model/points_of_service.dart';
 import 'package:dont_read_privacy_policy/product/service/url_launcher/custom_url_launcher.dart';
+import 'package:dont_read_privacy_policy/product/widgets/points_of_service.dart';
+import 'package:dont_read_privacy_policy/product/widgets/staggered_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:kartal/kartal.dart';
 
 class ServiceDetailPageView extends StatefulWidget {
@@ -61,6 +63,9 @@ class _ServiceDetailPageViewState extends ServiceDetailPageViewModel {
                     child: Image.network(
                       widget.pointsOfServiceModel.image,
                       fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(StringConsts.noLogoPath);
+                      },
                     ),
                   ),
                 ),
@@ -75,77 +80,28 @@ class _ServiceDetailPageViewState extends ServiceDetailPageViewModel {
                   ),
                 ),
               ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return Padding(
-                      padding: const PaddingConst.lowAll(),
-                      child: PointOfService(
-                          index: index,
-                          pointsOfServiceModel: widget.pointsOfServiceModel),
-                    );
-                  },
-                  childCount:
-                      widget.pointsOfServiceModel.pointsOfService.length,
+              AnimationLimiter(
+                child: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return StaggeredItem(
+                        index: index,
+                        child: Padding(
+                          padding: const PaddingConst.lowAll(),
+                          child: PointOfServiceWidget(
+                              index: index,
+                              pointsOfServiceModel:
+                                  widget.pointsOfServiceModel),
+                        ),
+                      );
+                    },
+                    childCount:
+                        widget.pointsOfServiceModel.pointsOfService.length,
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class PointOfService extends StatelessWidget {
-  const PointOfService({
-    Key? key,
-    required this.pointsOfServiceModel,
-    required this.index,
-  }) : super(key: key);
-
-  final PointsOfServiceModel pointsOfServiceModel;
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.25),
-        borderRadius: const RadiusConst.mediumAll(),
-      ),
-      child: Padding(
-        padding: const PaddingConst.mediumAll(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const PaddingConst.onlyRightMedium(),
-                    child: Text((index + 1).toString()),
-                  ),
-                  Flexible(
-                    child: Text(
-                      pointsOfServiceModel.pointsOfService[index].title,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                CustomUrlLauncher.customLaunchUrl(
-                    pointsOfServiceModel.pointsOfService[index].source);
-              },
-              splashColor: pointsOfServiceModel.serviceColor,
-              splashRadius: 24,
-              icon: const Icon(
-                Icons.source_outlined,
-              ),
-            )
-          ],
         ),
       ),
     );

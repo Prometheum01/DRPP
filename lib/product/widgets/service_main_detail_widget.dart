@@ -1,11 +1,12 @@
 import 'package:dont_read_privacy_policy/feautres/pages/service_detail_page/view/service_detail_page_view.dart';
-import 'package:dont_read_privacy_policy/product/constants/string_const.dart';
+import 'package:dont_read_privacy_policy/product/widgets/service_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../core/constants/padding_const.dart';
 import '../../core/constants/radius_const.dart';
 import '../model/points_of_service.dart';
+import 'main_service_name_with_reviewed.dart';
 
 class ServiceMainDetailWidget extends StatelessWidget {
   const ServiceMainDetailWidget({
@@ -25,7 +26,6 @@ class ServiceMainDetailWidget extends StatelessWidget {
             borderRadius: const RadiusConst.mediumAll(),
             splashColor: pointsOfServiceModel.serviceColor.withOpacity(0.75),
             onTap: () {
-              //Navigate detail page with service id.
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ServiceDetailPageView(
@@ -51,26 +51,8 @@ class ServiceMainDetailWidget extends StatelessWidget {
                     ),
                     Padding(
                       padding: const PaddingConst.horizontalMedium(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: context.dynamicWidth(0.6),
-                            child: Text(
-                              pointsOfServiceModel.name,
-                              overflow: TextOverflow.ellipsis,
-                              style: context.textTheme.headline6
-                                  ?.copyWith(fontSize: 24),
-                            ),
-                          ),
-                          Text(
-                            'Is totally reviewed: ${pointsOfServiceModel.isComprehensivelyReviewed}',
-                            style: context.textTheme.headline6?.copyWith(
-                                fontSize: 14, fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
+                      child: MainServiceNameWithReviewed(
+                          pointsOfServiceModel: pointsOfServiceModel),
                     ),
                   ],
                 ),
@@ -96,33 +78,6 @@ class ServiceMainDetailWidget extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ServiceLogo extends StatelessWidget {
-  const ServiceLogo({
-    Key? key,
-    required this.url,
-    required this.heroUrl,
-  }) : super(key: key);
-
-  final String url;
-  final String heroUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return Hero(
-      tag: heroUrl,
-      child: Image.network(
-        url,
-        height: context.dynamicHeight(0.1),
-        width: context.dynamicHeight(0.1),
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return Image.asset(StringConsts.noLogoPath);
-        },
-      ),
     );
   }
 }

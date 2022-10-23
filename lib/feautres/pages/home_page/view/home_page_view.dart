@@ -49,7 +49,7 @@ class _HomePageViewState extends HomePageViewModel {
           icon: Icon(
             Icons.book,
           ),
-          label: 'Book',
+          label: 'Courses',
         ),
       ],
     );

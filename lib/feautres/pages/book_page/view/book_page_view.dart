@@ -1,4 +1,6 @@
+import 'package:dont_read_privacy_policy/product/constants/string_const.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../view_model/book_page_view_model.dart';
 
@@ -12,8 +14,12 @@ class BookPageView extends StatefulWidget {
 class _BookPageViewState extends BookPageViewModel {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow,
+    return SafeArea(
+      child: Center(
+        child: Lottie.asset(
+          StringConsts.comingSoonLottiePath,
+        ),
+      ),
     );
   }
 }
