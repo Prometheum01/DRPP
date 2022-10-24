@@ -16,6 +16,12 @@ enum ServiceJsonConst {
   quoteText,
   parameters,
   services,
+  // ignore: constant_identifier_names
+  case_id,
+  classification,
+  hex,
+  human,
+  cases,
 }
 
 class ServiceStringConst {

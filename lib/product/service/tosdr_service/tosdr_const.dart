@@ -5,5 +5,8 @@ class ServiceConst {
 
   static const searchQuery = 'https://api.tosdr.org/search/v4/?query=';
 
+  static const searchCaseQuery = 'https://api.tosdr.org/case/v1/?page=';
+  
+
   static const logoWithoutPng = 'https://s3.tosdr.org/logos/';
 }

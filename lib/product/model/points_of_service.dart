@@ -85,7 +85,9 @@ class PointsOfServiceModel {
     List<PointOfService> pointList = [];
 
     for (final i in pointsJson) {
-      PointOfService pointOfService = PointOfService.fromJson(i);
+      PointOfService pointOfService = PointOfService.fromJson(
+        i,
+      );
       if (pointOfService.status == ServiceJsonConst.approved.name) {
         pointList.add(pointOfService);
       }
@@ -104,26 +106,53 @@ class PointsOfServiceModel {
 }
 
 class PointOfService {
-  final int pointsId;
+  final int caseId;
   final String title;
   final String source;
   final String status;
-  final String quoteText;
+  int ratingHex;
 
   PointOfService({
-    required this.pointsId,
+    required this.caseId,
     required this.title,
     required this.source,
     required this.status,
-    required this.quoteText,
+    required this.ratingHex,
   });
 
-  factory PointOfService.fromJson(Map<String, dynamic> json) {
+  setRatingHex(int newRatingHex) {
+    ratingHex = newRatingHex;
+  }
+
+  factory PointOfService.fromJson(Map<String, dynamic> json,
+      {int ratingHex = 1}) {
     return PointOfService(
-        pointsId: int.parse(json[ServiceJsonConst.id.name].toString()),
+        caseId: int.parse(json[ServiceJsonConst.case_id.name].toString()),
         title: json[ServiceJsonConst.title.name].toString(),
         source: json[ServiceJsonConst.source.name].toString(),
         status: json[ServiceJsonConst.status.name].toString(),
-        quoteText: json[ServiceJsonConst.quoteText.name].toString());
+        ratingHex: ratingHex);
+  }
+}
+
+class CaseModel {
+  final int ratingHex;
+  final int id;
+  final String ratingHuman;
+
+  CaseModel(
+      {required this.ratingHex, required this.id, required this.ratingHuman});
+
+  factory CaseModel.fromJson(Map<String, dynamic> json) {
+    return CaseModel(
+        ratingHex: int.parse(json[ServiceJsonConst.classification.name]
+                [ServiceJsonConst.hex.name]
+            .toString()),
+        id: int.parse(
+          json[ServiceJsonConst.id.name].toString(),
+        ),
+        ratingHuman: json[ServiceJsonConst.classification.name]
+                [ServiceJsonConst.human.name]
+            .toString());
   }
 }
