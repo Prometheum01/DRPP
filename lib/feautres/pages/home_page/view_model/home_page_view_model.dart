@@ -34,10 +34,6 @@ abstract class HomePageViewModel extends State<HomePageView> with LoadingMixin {
   fetchPopularServices() async {
     context.read<ServiceProvider>().setPopularServices(await tosdrService
         .fetchSpecificServices(PopularServiceList.popularServiceList));
-    // ignore: use_build_context_synchronously
-    context
-        .read<ServiceProvider>()
-        .setCaseList(await tosdrService.fetchCases());
     changeLoading();
   }
 }

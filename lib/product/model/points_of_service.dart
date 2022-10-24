@@ -11,6 +11,7 @@ import '../constants/color_consts.dart';
   2**4 = E
   2**5 = N/A
 
+
 */
 
 class PointsOfServiceModel {
@@ -110,49 +111,21 @@ class PointOfService {
   final String title;
   final String source;
   final String status;
-  int ratingHex;
 
   PointOfService({
     required this.caseId,
     required this.title,
     required this.source,
     required this.status,
-    required this.ratingHex,
   });
-
-  setRatingHex(int newRatingHex) {
-    ratingHex = newRatingHex;
-  }
 
   factory PointOfService.fromJson(Map<String, dynamic> json,
       {int ratingHex = 1}) {
     return PointOfService(
-        caseId: int.parse(json[ServiceJsonConst.case_id.name].toString()),
-        title: json[ServiceJsonConst.title.name].toString(),
-        source: json[ServiceJsonConst.source.name].toString(),
-        status: json[ServiceJsonConst.status.name].toString(),
-        ratingHex: ratingHex);
-  }
-}
-
-class CaseModel {
-  final int ratingHex;
-  final int id;
-  final String ratingHuman;
-
-  CaseModel(
-      {required this.ratingHex, required this.id, required this.ratingHuman});
-
-  factory CaseModel.fromJson(Map<String, dynamic> json) {
-    return CaseModel(
-        ratingHex: int.parse(json[ServiceJsonConst.classification.name]
-                [ServiceJsonConst.hex.name]
-            .toString()),
-        id: int.parse(
-          json[ServiceJsonConst.id.name].toString(),
-        ),
-        ratingHuman: json[ServiceJsonConst.classification.name]
-                [ServiceJsonConst.human.name]
-            .toString());
+      caseId: int.parse(json[ServiceJsonConst.case_id.name].toString()),
+      title: json[ServiceJsonConst.title.name].toString(),
+      source: json[ServiceJsonConst.source.name].toString(),
+      status: json[ServiceJsonConst.status.name].toString(),
+    );
   }
 }

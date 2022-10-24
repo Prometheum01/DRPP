@@ -25,42 +25,15 @@ class TosdrService {
                         [ServiceJsonConst.rating.name]
                     .toString() !=
                 '32') {
-          PointsOfServiceModel pointOfServiceModel =
-              PointsOfServiceModel.fromJson(
-            response.data[ServiceJsonConst.parameters.name],
-          );
-
           servicesList.add(
-            pointOfServiceModel,
+            PointsOfServiceModel.fromJson(
+              response.data[ServiceJsonConst.parameters.name],
+            ),
           );
         }
       }
     }
     return servicesList;
-  }
-
-  Future<List<CaseModel>> fetchCases() async {
-    List<CaseModel> casesList = [];
-
-    int i = 1;
-    while (i <= 2) {
-      final response = await dio.get('${ServiceConst.searchCaseQuery}$i');
-
-      if (response.statusCode == HttpStatus.ok) {
-        if (response.data != null) {
-          final json = response.data[ServiceJsonConst.parameters.name]
-              [ServiceJsonConst.cases.name];
-
-          for (Map<String, dynamic> j in json) {
-            print(j);
-            casesList.add(CaseModel.fromJson(j));
-          }
-        }
-      }
-      i++;
-    }
-
-    return casesList;
   }
 
   Future<List<PointsOfServiceModel>> fetchSearchedServices(String query) async {
