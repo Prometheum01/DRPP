@@ -1,16 +1,26 @@
-# dont_read_privacy_policy
+# DRPP (Don't Read Privacy Policy)
 
-A new Flutter project.
+DRPP is a mobile app that you can see services privacy policies.
 
-## Getting Started
+## You Can Try
 
-This project is a starting point for a Flutter application.
+[Web App](https://prometheum01.github.io/web/)
 
-A few resources to get you started if this is your first Flutter project:
+## Used Libraries
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Provider](https://pub.dev/packages/provider)
+- [Kartal](https://pub.dev/packages/kartal)
+- [Dio](https://pub.dev/packages/dio)
+- [Url Launcher](https://pub.dev/packages/url_launcher)
+- [Lottie](https://pub.dev/packages/lottie)
+- [Liquid Swipe](https://pub.dev/packages/liquid_swipe)
+- [Shared Preferences](https://pub.dev/packages/shared_preferences)
+- [Staggered Animations](https://pub.dev/packages/flutter_staggered_animations)
+- [Smooth Page Indicator](https://pub.dev/packages/smooth_page_indicator)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Used API
+We used [Tosdr.org API](https://developers.tosdr.org/dev/index.html) if you want to use it, it is free. Also, I want to say thank you for everything Tosdr.org Team.
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
